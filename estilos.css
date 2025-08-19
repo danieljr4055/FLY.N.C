@@ -102,16 +102,16 @@ section {
 }
 
 .reserva-card {
-  position: relative;
+  position: absolute;
   width: 100%;
-  min-height: 90vh;
+  min-height: 8000vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 100000px;
 }
 
 .reserva-card::before {
@@ -128,7 +128,7 @@ section {
 
 /* CONTENIDO SOBRE LAS IMÁGENES */
 .reserva-content {
-  position: relative;
+  position: absolute;
   z-index: 2;
   text-align: center;
   max-width: 600px;
