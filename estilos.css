@@ -8,11 +8,16 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  background:  #ffffff;
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* === Navegación === */
@@ -22,6 +27,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 2000; /* mantener el header por encima de todo */
 }
 
 .logo {
@@ -46,7 +53,7 @@ nav {
   text-decoration: underline;
 }
 
-/* === Secciones === */
+/* === Secciones generales === */
 main {
   padding: 3rem 2rem;
 }
@@ -62,147 +69,151 @@ section {
 
 /* === Hero === */
 .hero {
-  background: url('https://images.unsplash.com/photo-1508614999368-9260051294e1') no-repeat center center/cover;
+  background: url('img/hero-paratrike.jpg') no-repeat center center/cover;
   color: white;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
   text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
   border-radius: 10px;
 }
 
+.hero-texto {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.boton-reserva {
-  padding: 0.8rem 1.5rem;
-  background-color: #000000;
-  color: white;
-  border: none;
-  border-radius: 25px;
+.btn {
+  padding: 0.9rem 1.8rem;
+  background-color: #ffffff;
+  color: #004d40;
+  border-radius: 30px;
   font-size: 1rem;
+  font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.boton-reserva:hover {
+.btn:hover {
   background-color: #004d40;
+  color: #ffffff;
 }
-/* SECCIONES TIPO SLIDE */
+
+/* === Reservas (CORREGIDO) === */
 .reservas {
   display: flex;
   flex-direction: column;
+  gap: 0; /* una tarjeta debajo de la otra */
+  margin: 0;
+  padding: 0;
 }
-
 .reserva-card {
-  position: absolute;
+  position: relative;
   width: 100%;
-  min-height: 8000vh;
+  height: 100vh;   /* ocupa toda la altura visible de la pantalla */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 100000px;
+  justify-content: flex-start; /* contenido alineado a la izquierda */
+  padding: 0 5%; /* un poco de margen lateral */
+  overflow: hidden;
+  border-radius: 0; /* quitar esquinas redondeadas que crean borde blanco */
 }
 
+/* Capa oscura sobre la imagen: usa rgba para que no tape TODO y pointer-events:none para permitir clicks */
 .reserva-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #00796b; /* Capa oscura */
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,62,32,0.75), rgba(15,62,32,0.85));
   z-index: 1;
+  pointer-events: none;
 }
 
-
-/* CONTENIDO SOBRE LAS IMÁGENES */
+/* Contenido centrado y en flujo normal (no absolute), así evita problemas de superposición */
 .reserva-content {
-  position: absolute;
+  position: relative; /* dentro del flow del flex parent */
   z-index: 2;
-  text-align: center;
-  max-width: 600px;
-  padding: 20px;
   color: white;
 }
 
+/* Ajustes de tipografía */
 .reserva-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+  line-height: 1.05;
 }
 
 .reserva-content p {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1.6;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.95);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #212121;
-  color: white;
+.reserva-precio {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  font-weight: 700;
+  color: #a3ffa6;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .reserva-content h2 {
-    font-size: 2rem;
-  }
-
-  .reserva-content p {
-    font-size: 1rem;
-  }
-}
-
-/* === Secciones informativas === */
-section h2 {
-  font-size: 1.8rem;
-  color: #004d40;
-  margin-bottom: 1rem;
-}
-
-section p {
+.reserva-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #0f3e20;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
   font-size: 1rem;
-  color: #333;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  z-index: 2;
 }
 
-/* === Footer === */
-footer {
-  background-color: #212121;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+.reserva-btn:hover {
+  background-color: #a3ffa6;
+  color: #0f3e20;
 }
 
-/* === Responsive === */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
+/* Si quieres que el texto quede a la izquierda en pantallas grandes pero centrado en móviles */
+@media (min-width: 900px) {
+  .reserva-content { text-align: left; }
 }
-/* Estilo de los servicios */
+@media (max-width: 900px) {
+  .reserva-content { text-align: center; }
+}
+
+/* === Servicios (originales, no tocar) === */
 .servicios {
   display: flex;
   flex-direction: column;
@@ -256,5 +267,285 @@ footer {
 .servicio-card p {
   font-size: 1.1em;
   color: #004d40;
+}
+
+/* === Footer === */
+footer {
+  background-color: #212121;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* === Responsive general === */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .reserva-content h2 {
+    font-size: 2rem;
+  }
+
+  .reserva-content p {
+    font-size: 1rem;
+  }
+
+  .servicio-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .servicio-card img {
+    width: 100%;
+  }
+}
+
+/* === NUEVO PARA INDEX === */
+
+/* Servicios en grid (solo afecta a index.html) */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.servicio {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.servicio:hover {
+  transform: translateY(-5px);
+}
+
+.servicio img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.servicio h3 {
+  color: #13531c;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.servicio p {
+  font-size: 1rem;
+  color: #004d40;
+}
+
+/* ===================== */
+/* SECCIONES CARTAGO */
+/* ===================== */
+
+.cartago {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 80px 10%;
+    background: #f9fafc;
+    border-radius: 30px;
+    margin: 60px auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cartago:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cartago-texto {
+    flex: 1;
+    text-align: left;
+}
+
+.cartago-texto h2 {
+    font-size: 2.4rem;
+    color: #1e3d58;
+    margin-bottom: 20px;
+}
+
+.cartago-texto p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.cartago-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.cartago-img img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.cartago-img img:hover {
+    transform: scale(1.05);
+}
+
+/* Sección invertida */
+.cartago:nth-of-type(2) {
+    flex-direction: row-reverse;
+    background: #eef4f9;
+}
+
+@media (max-width: 900px) {
+    .cartago {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cartago:nth-of-type(2) {
+        flex-direction: column;
+    }
+
+    .cartago-texto {
+        text-align: center;
+    }
+
+    .cartago-img img {
+        max-width: 400px;
+    }
+}
+.cartago-btn {
+  padding: 0.9rem 1.8rem;
+  background-color:#004d40;
+  color: #ffffff;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cartago-btn:hover {
+  background-color: #ffffff;
+  color: #004d40;
+}
+/* ======== FLY.N.C (Página informativa) ======== */
+
+.info-flync {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+}
+
+.titulo-seccion {
+    text-align: center;
+    color: #004d40;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.intro-flync {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    color: #333;
+    line-height: 1.6;
+}
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+    justify-items: center;
+}
+
+.servicio {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 350px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.servicio img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+
+
+.servicio h3 {
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+.historia {
+    margin-top: 80px;
+}
+
+.mision-vision {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.valores {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.valores h3 {
+    color: #004d40;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.valores ul {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.valores li {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    color: #333;
 }
 
