@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeria
+  - FLY.N.C</title>
+   <link rel="stylesheet" href="../static/css/estilos.css"/>
+</head>
+<body>
+    <nav>
+    <div class="logo">FLY.N.C</div>
+    <ul class="nav-links">
+      <li><a href="/templates/index.html">Inicio</a></li>
+      <li><a href="/templates/servicios.html">Servicios</a></li>
+      <li><a href="/templates/contacto.html">Contacto</a></li>
+      <li><a href="/templates/reservas.html">Reservas</a></li>
+      <li><a href="/templates/gallery.html">Galeria</a></li>
+      </ul>
+    </nav>
+    
+      
+  <main class="galeria">
+    <h1 class="galeria-titulo" data-aos="fade-down">GALERÍA</h1>
+
+    <div class="carousel-container" data-aos="fade-up">
+      <div class="carousel">
+        <div class="slide"><img src="../static/img/gallery1.jpg" alt="Vuelo panorámico" /></div>
+        <div class="slide"><img src="../static/img/gallery2.jpg" alt="Paratrike sobre Cartago" /></div>
+        <div class="slide"><img src="../static/img/gallery3.jpg" alt="Atardecer en vuelo" /></div>
+        <div class="slide"><img src="../static/img/gallery4.jpg" alt="Despegue" /></div>
+        <div class="slide"><img src="../static/img/gallery5.jpg" alt="Aventura aérea" /></div>
+        <div class="slide"><img src="../static/img/gallery6.jpg" alt="Pilotos FLY.N.C" /></div>
+      </div>
+
+      <button class="prev"><i class="fas fa-chevron-left"></i></button>
+      <button class="next"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="dots"></div>
+    </div>
+  </main>
+    
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Información</h3>
+      <ul>
+        <li><a href="#">Términos de servicio</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Reembolso</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p><strong>Teléfono:</strong> +57 312 729 6703</p>
+      <p><strong>Correo:</strong> santysanoro@gmail.com</p>
+      <p><strong>Horario de atencion:</strong> Lunes - viernes - 7:00 AM a 7:00 PM</p>
+      <p><strong>Ubicación:</strong> Cartago, Valle del Cauca</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Suscríbete</h3>
+      <form action="https://formspree.io/f/xvgqwwep" method="POST" class="newsletter">
+        <input type="email" name="email" placeholder="Tu correo electrónico" required />
+        <button type="submit">Suscribirme</button>
+      </form>
+      <h4>Síguenos</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i>
+        <img src="../static/intagram.jpg" alt="ig"></a>
+
+        <a href="#"><i class="fab fa-facebook"></i>
+        <img src="../static/facebook.jpg" alt="face"></a>
+
+        <a href="#"><i class="fab fa-tiktok"></i>
+        <img src="../static/tiktok.jpg" alt="tiktok"></a>
+
+      </div>
+
+  <script src="../static/js/gallery.js"></script>
+</body>
+</html>
